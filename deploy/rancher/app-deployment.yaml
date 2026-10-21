@@ -7,6 +7,11 @@ metadata:
     app.kubernetes.io/name: ecommerce
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: ecommerce
@@ -65,7 +70,7 @@ spec:
             failureThreshold: 30
           readinessProbe:
             httpGet:
-              path: /health
+              path: /ready-check
               port: http
             periodSeconds: 10
             timeoutSeconds: 3
