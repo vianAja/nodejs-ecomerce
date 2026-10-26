@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prod-ecommerce-portal
+  namespace: ecommerce
+  labels:
+    lab.k9rch.adinusa.id/fixture: lab05-2
+    app.kubernetes.io/name: ecommerce
+    app.kubernetes.io/component: ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - portal.lab.adinusa.internal
+    secretName: prod-ecommerce-portal-tls-missing
+  rules:
+  - host: portal.lab.adinusa.internal
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ecommerce
+            port:
+              number: 80
