@@ -12,7 +12,7 @@ spec:
   tls:
   - hosts:
     - portal.lab.adinusa.internal
-    secretName: prod-ecommerce-portal-tls-missing
+    secretName: prod-ecommerce-portal-tls
   rules:
   - host: portal.lab.adinusa.internal
     http:
